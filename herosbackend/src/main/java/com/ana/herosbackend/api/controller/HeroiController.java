@@ -37,13 +37,30 @@ public class HeroiController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(heroiService.salvar(heroi));
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<Herois> getHeroiById(@PathVariable Long id) {
         Herois heroi = heroiService.buscarPorId(id);
         return ResponseEntity.status(HttpStatus.OK).body(heroi);
     }
+
     @GetMapping
     public ResponseEntity<List<Herois>> getHerois() {
         return ResponseEntity.status(HttpStatus.OK).body(heroiService.buscarTodosHerois());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Herois> putHeroi(@RequestBody @Valid HeroiRecord heroiDto, @PathVariable Long id) {
+        Herois heroi = heroiService.buscarPorId(id);
+        List<Superpoderes> superpoderes = superpoderService.buscarSuperpoderes(heroiDto.superpoderIds());
+
+        heroi.setNomeHeroi(heroiDto.nomeHeroi());
+        heroi.setNome(heroiDto.nome());
+        heroi.setAltura(heroiDto.altura());
+        heroi.setPeso(heroiDto.peso());
+        heroi.dataNascimento(heroiDto.dataNascimento());
+        heroi.setSuperpoderes(superpoderes);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(heroiService.salvar(heroi));
     }
 }
