@@ -1,0 +1,25 @@
+package com.ana.herosbackend.api.ExceptionHandler;
+
+import com.ana.herosbackend.api.ExceptionHandler.Exceptions.HeroiDuplicadoException;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+
+@ControllerAdvice
+public class GlobalExceptionHandler {
+    @ExceptionHandler(HeroiDuplicadoException.class)
+    public ResponseEntity<ExceptionMessage> handleHeroiDuplicado(
+            HeroiDuplicadoException ex
+    ) {
+        ExceptionMessage body = ExceptionMessage.builder()
+                .httpCode(HttpStatus.CONFLICT.value())
+                .errorClass(ex.getClass().getSimpleName())
+                .message(ex.getMessage())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(body);
+    }
+}
