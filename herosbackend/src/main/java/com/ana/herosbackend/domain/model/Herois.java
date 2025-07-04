@@ -26,7 +26,7 @@ public class Herois implements Serializable {
     private String nomeHeroi;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dataEmissao;
+    private Date dataNascimento;
     @ManyToMany
     @JoinTable(
             name = "heroisSuperpoderes",
@@ -39,11 +39,11 @@ public class Herois implements Serializable {
 
     private float peso;
 
-    public Herois(Long id, String nome, String nomeHeroi, Date dataEmissao, List<Superpoderes> superpoderes, float altura, float peso) {
+    public Herois(Long id, String nome, String nomeHeroi, Date dataNascimento, List<Superpoderes> superpoderes, float altura, float peso) {
         this.id = id;
         this.nome = nome;
         this.nomeHeroi = nomeHeroi;
-        this.dataEmissao = dataEmissao;
+        this.dataNascimento = dataNascimento;
         this.superpoderes = superpoderes;
         this.altura = altura;
         this.peso = peso;
@@ -77,12 +77,12 @@ public class Herois implements Serializable {
         this.nomeHeroi = nomeHeroi;
     }
 
-    public Date getDataEmissao() {
-        return dataEmissao;
+    public Date dataNascimento() {
+        return dataNascimento;
     }
 
-    public void setDataEmissao(Date dataEmissao) {
-        this.dataEmissao = dataEmissao;
+    public void dataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
     public List<Superpoderes> getSuperpoderes() {

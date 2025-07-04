@@ -1,5 +1,6 @@
 package com.ana.herosbackend.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 
@@ -22,6 +23,7 @@ public class Superpoderes {
     private String descricao;
 
     @ManyToMany(mappedBy = "superpoderes")
+    @JsonIgnore
     private List<Herois> herois = new ArrayList<>();
 
 
