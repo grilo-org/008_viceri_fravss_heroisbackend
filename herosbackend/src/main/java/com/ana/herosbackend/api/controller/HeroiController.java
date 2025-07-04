@@ -25,7 +25,7 @@ public class HeroiController {
     private SuperpoderService superpoderService;
 
     @PostMapping
-    public ResponseEntity<Herois> saveDenuncia(@RequestBody @Valid HeroiRecord heroiDto) {
+    public ResponseEntity<Herois> saveHeroi(@RequestBody @Valid HeroiRecord heroiDto) {
         List<Superpoderes> superpoderesList = superpoderService.buscarSuperpoderes(heroiDto.superpoderIds());
         Herois heroi = new Herois();
         heroi.setSuperpoderes(superpoderesList);
@@ -38,8 +38,12 @@ public class HeroiController {
         return ResponseEntity.status(HttpStatus.CREATED).body(heroiService.salvar(heroi));
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Herois> getDenunciaById(@PathVariable Long id) {
+    public ResponseEntity<Herois> getHeroiById(@PathVariable Long id) {
         Herois heroi = heroiService.buscarPorId(id);
         return ResponseEntity.status(HttpStatus.OK).body(heroi);
+    }
+    @GetMapping
+    public ResponseEntity<List<Herois>> getHerois() {
+        return ResponseEntity.status(HttpStatus.OK).body(heroiService.buscarTodosHerois());
     }
 }
