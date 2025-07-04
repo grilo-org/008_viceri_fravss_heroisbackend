@@ -73,4 +73,16 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
     }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ExceptionMessage> handleInternalServerError(Exception ex) {
+        ExceptionMessage body = ExceptionMessage.builder()
+                .httpCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .errorClass(ex.getClass().getSimpleName())
+                .message("Ocorreu um erro interno no servidor. Por favor, tente novamente mais tarde.")
+                .build();
+
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(body);
+    }
 }
