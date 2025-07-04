@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.format.DateTimeFormatter;
+
 import java.util.List;
 
 @RestController
@@ -62,5 +62,11 @@ public class HeroiController {
         heroi.setSuperpoderes(superpoderes);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(heroiService.salvar(heroi));
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    public void deleteDenuncia(@PathVariable Long id) {
+        heroiService.apagarHeroi(id);
     }
 }

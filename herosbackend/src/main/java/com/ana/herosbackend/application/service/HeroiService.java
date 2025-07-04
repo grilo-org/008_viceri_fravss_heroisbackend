@@ -3,14 +3,15 @@ package com.ana.herosbackend.application.service;
 import com.ana.herosbackend.api.ExceptionHandler.Exceptions.HeroiDuplicadoException;
 
 import com.ana.herosbackend.api.ExceptionHandler.Exceptions.HeroiNaoEncontradoException;
-import com.ana.herosbackend.api.ExceptionHandler.Exceptions.IDInvalidoException;
+
 import com.ana.herosbackend.api.ExceptionHandler.Exceptions.NenhumHeroiEncontradoException;
 import com.ana.herosbackend.domain.model.Herois;
 import com.ana.herosbackend.domain.repository.HeroiRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+
 
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class HeroiService {
     @Autowired
     private HeroiRepository heroiRepository;
 
+    @Transactional
     public Herois buscarPorId(Long id) {
             Herois heroi = heroiRepository.findById(id).isPresent() ? heroiRepository.findById(id).get() : null;
             if(heroi == null){
@@ -46,5 +48,12 @@ public class HeroiService {
         }
 
         return herois;
+    }
+
+    @Transactional
+    public void apagarHeroi(Long id) {
+        Herois heroi = heroiRepository.findById(id)
+                .orElseThrow(HeroiNaoEncontradoException::new);
+        heroiRepository.delete(heroi);
     }
 }
