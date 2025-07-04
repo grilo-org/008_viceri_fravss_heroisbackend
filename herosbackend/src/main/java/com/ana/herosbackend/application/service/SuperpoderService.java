@@ -12,8 +12,12 @@ public class SuperpoderService {
     @Autowired
     SuperpoderRepository superpoderRepository;
 
-    public List<Superpoderes> buscarSuperpoderes(List<Long> ids){
+    public List<Superpoderes> buscarSuperpoderesPorId(List<Long> ids){
         return superpoderRepository.findAllById(ids);
+
+    }
+    public List<Superpoderes> buscarSuperpoderes(){
+        return superpoderRepository.findAll();
 
     }
 }

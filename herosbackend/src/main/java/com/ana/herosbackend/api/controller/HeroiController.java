@@ -45,7 +45,7 @@ public class HeroiController {
     })
     @PostMapping
     public ResponseEntity<Herois> saveHeroi(@RequestBody @Valid HeroiRecord heroiDto) {
-        List<Superpoderes> superpoderesList = superpoderService.buscarSuperpoderes(heroiDto.superpoderIds());
+        List<Superpoderes> superpoderesList = superpoderService.buscarSuperpoderesPorId(heroiDto.superpoderIds());
         Herois heroi = new Herois();
         heroi.setSuperpoderes(superpoderesList);
         heroi.setNomeHeroi(heroiDto.nomeHeroi());
@@ -104,7 +104,7 @@ public class HeroiController {
     @PutMapping("/{id}")
     public ResponseEntity<Herois> putHeroi(@RequestBody @Valid HeroiRecord heroiDto, @PathVariable Long id) {
         Herois heroi = heroiService.buscarPorId(id);
-        List<Superpoderes> superpoderes = superpoderService.buscarSuperpoderes(heroiDto.superpoderIds());
+        List<Superpoderes> superpoderes = superpoderService.buscarSuperpoderesPorId(heroiDto.superpoderIds());
 
         heroi.setNomeHeroi(heroiDto.nomeHeroi());
         heroi.setNome(heroiDto.nome());
