@@ -77,11 +77,11 @@ public class Herois implements Serializable {
         this.nomeHeroi = nomeHeroi;
     }
 
-    public Date dataNascimento() {
+    public Date getDataNascimento() {
         return dataNascimento;
     }
 
-    public void dataNascimento(Date dataNascimento) {
+    public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

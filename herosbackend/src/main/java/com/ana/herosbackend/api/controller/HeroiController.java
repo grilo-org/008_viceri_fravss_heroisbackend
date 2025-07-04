@@ -52,7 +52,7 @@ public class HeroiController {
         heroi.setNome(heroiDto.nome());
         heroi.setAltura(heroiDto.altura());
         heroi.setPeso(heroiDto.peso());
-        heroi.dataNascimento(heroiDto.dataNascimento());
+        heroi.setDataNascimento(heroiDto.dataNascimento());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(heroiService.salvar(heroi));
     }
@@ -110,7 +110,7 @@ public class HeroiController {
         heroi.setNome(heroiDto.nome());
         heroi.setAltura(heroiDto.altura());
         heroi.setPeso(heroiDto.peso());
-        heroi.dataNascimento(heroiDto.dataNascimento());
+        heroi.setDataNascimento(heroiDto.dataNascimento());
         heroi.setSuperpoderes(superpoderes);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(heroiService.salvar(heroi));
