@@ -1,9 +1,6 @@
 package com.ana.herosbackend.api.ExceptionHandler;
 
-import com.ana.herosbackend.api.ExceptionHandler.Exceptions.HeroiDuplicadoException;
-import com.ana.herosbackend.api.ExceptionHandler.Exceptions.HeroiNaoEncontradoException;
-import com.ana.herosbackend.api.ExceptionHandler.Exceptions.IDInvalidoException;
-import com.ana.herosbackend.api.ExceptionHandler.Exceptions.NenhumHeroiEncontradoException;
+import com.ana.herosbackend.api.ExceptionHandler.Exceptions.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -84,5 +81,17 @@ public class GlobalExceptionHandler {
 
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(body);
+    }
+
+    @ExceptionHandler(TamanhoCampoInvalidoException.class)
+    public ResponseEntity<ExceptionMessage> handleTamanhoInvalidoError(Exception ex) {
+        ExceptionMessage body = ExceptionMessage.builder()
+                .httpCode(HttpStatus.BAD_REQUEST.value())
+                .errorClass(ex.getClass().getSimpleName())
+                .message(ex.getMessage())
+                .build();
+
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
     }
 }

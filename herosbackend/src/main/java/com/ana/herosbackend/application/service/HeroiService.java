@@ -5,15 +5,18 @@ import com.ana.herosbackend.api.ExceptionHandler.Exceptions.HeroiDuplicadoExcept
 import com.ana.herosbackend.api.ExceptionHandler.Exceptions.HeroiNaoEncontradoException;
 
 import com.ana.herosbackend.api.ExceptionHandler.Exceptions.NenhumHeroiEncontradoException;
+import com.ana.herosbackend.api.ExceptionHandler.Exceptions.TamanhoCampoInvalidoException;
 import com.ana.herosbackend.domain.model.Herois;
 import com.ana.herosbackend.domain.repository.HeroiRepository;
 import jakarta.transaction.Transactional;
+import org.hibernate.exception.DataException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 
-
+import java.sql.DataTruncation;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 @Service
@@ -36,8 +39,13 @@ public class HeroiService {
         try {
             return heroiRepository.save(heroi);
         } catch (DataIntegrityViolationException ex) {
-                throw new HeroiDuplicadoException("Já existe um herói com esse nomeHeroi.");
+                if(ex.getRootCause() instanceof SQLIntegrityConstraintViolationException) {
+                    throw new HeroiDuplicadoException("Já existe um herói com esse nomeHeroi.");
+                } else if(ex.getRootCause() instanceof DataTruncation){
+                     throw new TamanhoCampoInvalidoException("O valor inserido é grande demais.");
+                }
         }
+    return null;
     }
 
     public List<Herois> buscarTodosHerois() {
