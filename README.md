@@ -1,43 +1,48 @@
+#!/bin/bash
+
 # heroisbackend
-## Descrição
-API backend para gerenciamento de heróis, utilizando Spring Boot, JPA e banco de dados relacional.
+# ===================================
+# API backend para gerenciamento de heróis, utilizando Spring Boot, JPA e banco de dados relacional.
 
-frontend: https://github.com/fravss/heroisfrontend
+# Link do frontend:
+echo "Frontend disponível em: https://github.com/fravss/heroisfrontend"
 
-## Pré-requisitos
-- Java JDK 17 ou superior
-- Maven 3.x
-- Banco de dados MySQL (ou outro configurado no application.properties)
+# ===================================
+# Pré-requisitos:
+# - Java JDK 17 ou superior
+# - Maven 3.x
+# - Banco de dados MySQL
 
-## Configuração
-
-1. Clone o repositório:
+# ===================================
+# 1. Clonar o repositório
+echo "Clonando o repositório..."
 git clone https://github.com/seuusuario/heroisbackend.git
-cd herois-backend
+cd heroisbackend || exit
 
-2. Configure o arquivo src/main/resources/application.properties com as informações do seu banco:
-
+# ===================================
+# 2. Configuração do banco de dados
+echo "Configure o arquivo src/main/resources/application.properties com suas credenciais:"
+cat <<EOF > src/main/resources/application.properties
 spring.datasource.url=jdbc:mysql://localhost:3306/seubanco
 spring.datasource.username=seuusuario
 spring.datasource.password=suasenha
 
-# Porta da aplicação (opcional, padrão 8080)
+# Porta da aplicação (opcional)
 server.port=8080
+EOF
 
-## Como rodar
+echo "Arquivo application.properties criado! Edite com suas credenciais reais."
 
-### Via IDE
-- Importe o projeto como Maven.
-- Rode a classe principal com @SpringBootApplication.
+# ===================================
+# 3. Rodando o projeto
+echo "Rodando o projeto com Maven..."
 
-### Via linha de comando
-- Compile e rode com Maven:
-
+# Compilar
 mvn clean install
+
+# Rodar aplicação
 mvn spring-boot:run
 
-
-## API Docs (Swagger)
-Se o projeto tiver Swagger configurado, acesse a documentação via:
-
- http://localhost:8080/swagger-ui/index.htm
+# ===================================
+# Acessar documentação Swagger (se configurado):
+echo "Acesse http://localhost:8080/swagger-ui/index.html para ver a documentação da API (caso Swagger esteja configurado)"
