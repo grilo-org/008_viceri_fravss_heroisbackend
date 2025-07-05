@@ -36,6 +36,9 @@ server.port=8080
 mvn clean install
 mvn spring-boot:run
 
+## Documentação
+Disponível em: http://localhost:8080/swagger-ui/index.html
+
 
 ## API Docs (Swagger)
 Se o projeto tiver Swagger configurado, acesse a documentação via:
