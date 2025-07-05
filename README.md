@@ -2,7 +2,7 @@
 ## Descrição
 API backend para gerenciamento de heróis, utilizando Spring Boot, JPA e banco de dados relacional.
 
-frontend: https://github.com/fravss/heroisfrontend/tree/master
+frontend: https://github.com/fravss/heroisfrontend
 
 ## Pré-requisitos
 - Java JDK 17 ou superior
