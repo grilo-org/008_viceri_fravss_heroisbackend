@@ -1,48 +1,43 @@
-#!/bin/bash
-
 # heroisbackend
-# ===================================
-# API backend para gerenciamento de heróis, utilizando Spring Boot, JPA e banco de dados relacional.
+## Descrição
+API backend para gerenciamento de heróis, utilizando Spring Boot, JPA e banco de dados relacional.
 
-# Link do frontend:
-echo "Frontend disponível em: https://github.com/fravss/heroisfrontend"
+frontend: https://github.com/fravss/heroisfrontend
 
-# ===================================
-# Pré-requisitos:
-# - Java JDK 17 ou superior
-# - Maven 3.x
-# - Banco de dados MySQL
+## Pré-requisitos
+- Java JDK 17 ou superior
+- Maven 3.x
+- Banco de dados MySQL
 
-# ===================================
-# 1. Clonar o repositório
-echo "Clonando o repositório..."
+## Configuração
+
+1. Clone o repositório:
 git clone https://github.com/seuusuario/heroisbackend.git
-cd heroisbackend || exit
+cd herois-backend
 
-# ===================================
-# 2. Configuração do banco de dados
-echo "Configure o arquivo src/main/resources/application.properties com suas credenciais:"
-cat <<EOF > src/main/resources/application.properties
+2. Configure o arquivo src/main/resources/application.properties com as informações do seu banco:
+
 spring.datasource.url=jdbc:mysql://localhost:3306/seubanco
 spring.datasource.username=seuusuario
 spring.datasource.password=suasenha
 
-# Porta da aplicação (opcional)
+# Porta da aplicação (opcional, padrão 8080)
 server.port=8080
-EOF
 
-echo "Arquivo application.properties criado! Edite com suas credenciais reais."
+## Como rodar
 
-# ===================================
-# 3. Rodando o projeto
-echo "Rodando o projeto com Maven..."
+### Via IDE
+- Importe o projeto como Maven.
+- Rode a classe principal com @SpringBootApplication.
 
-# Compilar
+### Via linha de comando
+- Compile e rode com Maven:
+
 mvn clean install
-
-# Rodar aplicação
 mvn spring-boot:run
 
-# ===================================
-# Acessar documentação Swagger (se configurado):
-echo "Acesse http://localhost:8080/swagger-ui/index.html para ver a documentação da API (caso Swagger esteja configurado)"
+
+## API Docs (Swagger)
+Se o projeto tiver Swagger configurado, acesse a documentação via:
+
+ http://localhost:8080/swagger-ui/index.htm
