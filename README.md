@@ -12,7 +12,7 @@ frontend: https://github.com/fravss/heroisfrontend
 ## Configuração
 
 1. Clone o repositório:
-git clone https://github.com/seuusuario/heroisbackend.git
+git clone https://github.com/fravss/heroisbackend.git
 cd herois-backend
 
 2. Configure o arquivo src/main/resources/application.properties com as informações do seu banco:
@@ -25,7 +25,11 @@ spring.datasource.password=suasenha
 
 
 # Porta da aplicação (opcional, padrão 8080)
+
+```bash
 server.port=8080
+```
+
 
 ## Como rodar
 
